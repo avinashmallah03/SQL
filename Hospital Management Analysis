@@ -1,0 +1,13 @@
+Hospital Management Analysis
+Project Description:
+The primary objective of hospital management analysis is to optimize the efficiency and effectiveness of healthcare delivery within a hospital or healthcare system.
+
+This involves assessing various aspects such as resource allocation, patient flow, quality of care, and financial performance to enhance patient outcomes while managing costs and resources effectively.
+
+Tool Used:
+MySQL
+Tables Used:
+patients
+doctors
+admissions
+province_names
