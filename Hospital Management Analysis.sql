@@ -30,7 +30,54 @@ CREATE TABLE patients (
 	allergies VARCHAR(80),
 	height DECIMAL(3, 0) CHECK (height > 0),
 	weight DECIMAL(4, 0) CHECK (weight > 0));
-    
+
+Select * From admissions;
+Select * from patients;
+-- 1.Show first name, last name, and gender of patients whose gender is 'M'
+Select first_name,last_name,gender from patients where gender='M';
+
+-- 2.Show first name and last name of patients that weight within the range of 100 to 120 (inclusive)
+Select first_name,last_name,weight from patients where weight between 100 and 120;
+
+-- 3.Show first name of patients that start with the letter 'C'.
+Select first_name from patients where first_name like 'C%';
+
+-- 4.Show first name and last name concatinated into one column to show their full name.
+Select concat((first_name),' ',(last_name)) as full_name from patients;
+
+-- 5.Show first name, last name, and the full province name of each patient. (Example: 'Ontario' instead of 'ON')
+select p.first_name,p.last_name,pn.province_name from patients p inner join province_names pn on p.province_id=pn.province_id;
+
+-- 6.Show how many patients have a birth_date with 2010 as the birth year.
+Select count(birth_date) as total_name from patients where year(birth_date)=2010;
+
+-- 7.Show the first_name, last_name, and height of the patient with the greatest height.
+Select first_name,last_name,height from patients order by height desc
+limit 1;
+
+-- 8.Show all columns for patients who have one of the following patient_ids: 1,45,534,879,1000.
+Select * from patients where patient_id in (1,45,534,879,1000);
+
+-- 9.Show the total number of admissions.
+Select count(*) as total_admission From admissions;
+
+-- 10.Show all the columns from admissions where the patient was admitted and discharged on the same day.
+Select * from admissions where admission_date=discharge_date;
+
+-- 11.Show the patient id and the total number of admissions for patient_id 579.
+Select patient_id,count(patient_id) as total_number_admission from admissions where patient_id=579;
+
+-- 12.Based on the cities that our patients live in, show unique cities that are in province_id 'NS'?
+Select distinct(city) from patients where province_id='NS';
+
+-- 13.Write a query to find the first_name, last name and birth date of patients who has height greater than 160 and weight greater than 70.
+Select first_name,last_name,birth_date,height,weight from patients where height>160 and weight>70;
+
+-- 14.Write a query to find list of patients first_name, last_name, and allergies where allergies are not null and are from the city of 'Hamilton'.
+Select first_name,last_name,allergies from patients where allergies IS NOT null and city='Hamilton';
+
+Select * from province_names;
+Select * from patients;
     
     
     
@@ -9644,50 +9691,4 @@ INSERT INTO admissions VALUES(4528,'2019-03-03','2019-03-06','Profound Depressio
 INSERT INTO admissions VALUES(4529,'2019-04-01','2019-04-07','Hyperemesis',16);
 INSERT INTO admissions VALUES(4529,'2018-08-06','2018-08-14','Deep Vein Thrombosis',10);
 
-Select * From admissions;
-Select * from patients;
--- 1.Show first name, last name, and gender of patients whose gender is 'M'
-Select first_name,last_name,gender from patients where gender='M';
 
--- 2.Show first name and last name of patients that weight within the range of 100 to 120 (inclusive)
-Select first_name,last_name,weight from patients where weight between 100 and 120;
-
--- 3.Show first name of patients that start with the letter 'C'.
-Select first_name from patients where first_name like 'C%';
-
--- 4.Show first name and last name concatinated into one column to show their full name.
-Select concat((first_name),' ',(last_name)) as full_name from patients;
-
--- 5.Show first name, last name, and the full province name of each patient. (Example: 'Ontario' instead of 'ON')
-select p.first_name,p.last_name,pn.province_name from patients p inner join province_names pn on p.province_id=pn.province_id;
-
--- 6.Show how many patients have a birth_date with 2010 as the birth year.
-Select count(birth_date) as total_name from patients where year(birth_date)=2010;
-
--- 7.Show the first_name, last_name, and height of the patient with the greatest height.
-Select first_name,last_name,height from patients order by height desc
-limit 1;
-
--- 8.Show all columns for patients who have one of the following patient_ids: 1,45,534,879,1000.
-Select * from patients where patient_id in (1,45,534,879,1000);
-
--- 9.Show the total number of admissions.
-Select count(*) as total_admission From admissions;
-
--- 10.Show all the columns from admissions where the patient was admitted and discharged on the same day.
-Select * from admissions where admission_date=discharge_date;
-
--- 11.Show the patient id and the total number of admissions for patient_id 579.
-Select patient_id,count(patient_id) as total_number_admission from admissions where patient_id=579;
-
--- 12.Based on the cities that our patients live in, show unique cities that are in province_id 'NS'?
-Select distinct(city) from patients where province_id='NS';
-
--- 13.Write a query to find the first_name, last name and birth date of patients who has height greater than 160 and weight greater than 70.
-Select first_name,last_name,birth_date,height,weight from patients where height>160 and weight>70;
-
--- 14.Write a query to find list of patients first_name, last_name, and allergies where allergies are not null and are from the city of 'Hamilton'.
-Select first_name,last_name,allergies from patients where allergies IS NOT null and city='Hamilton';
-
-Select * from province_names;
-Select * from patients;
