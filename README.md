@@ -1,1 +1,1 @@
-#coffee equipment store
+Hospital data analysis in SQL involves querying and analyzing patient records, medical staff data, treatments, hospital resources, and financial records. The goal is to extract valuable insights for decision-making, improve patient care, and optimize hospital operations.
